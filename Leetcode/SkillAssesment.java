@@ -5,108 +5,74 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class SkillAssesment {
 
     public static void main(String[] args) {
-        String x = "hgiiccfchbeadgebc\n" +
-                "biiga\n" +
-                "edchgb\n" +
-                "ccfdbeajaeid\n" +
-                "ijgbeecjbj\n" +
-                "bcfbbacfbfcfbhcbfjafibfhffac\n" +
-                "ebechbfhfcijcjbcehbgbdgbh\n" +
-                "ijbfifdbfifaidje\n" +
-                "acgffegiihcddcdfjhhgadfjb\n" +
-                "ggbdfdhaffhghbdh\n" +
-                "dcjaichjejgheiaie\n" +
-                "d\n" +
-                "jeedfch\n" +
-                "ahabicdffbedcbdeceed\n" +
-                "fehgdfhdiffhegafaaaiijceijdgbb\n" +
-                "beieebbjdgdhfjhj\n" +
-                "ehg\n" +
-                "fdhiibhcbecddgijdb\n" +
-                "jgcgafgjjbg\n" +
-                "c\n" +
-                "fiedahb\n" +
-                "bhfhjgcdbjdcjjhaebejaecdheh\n" +
-                "gbfbbhdaecdjaebadcggbhbchfjg\n" +
-                "jdjejjg\n" +
-                "dbeedfdjaghbhgdhcedcj\n" +
-                "decjacchhaciafafdgha\n" +
-                "a\n" +
-                "hcfibighgfggefghjh\n" +
-                "ccgcgjgaghj\n" +
-                "bfhjgehecgjchcgj\n" +
-                "bjbhcjcbbhf\n" +
-                "daheaggjgfdcjehidfaedjfccdafg\n" +
-                "efejicdecgfieef\n" +
-                "ciidfbibegfca\n" +
-                "jfhcdhbagchjdadcfahdii\n" +
-                "i\n" +
-                "abjfjgaghbc\n" +
-                "bddeejeeedjdcfcjcieceieaei\n" +
-                "cijdgbddbceheaeececeeiebafgi\n" +
-                "haejgebjfcfgjfifhihdbddbacefd\n" +
-                "bhhjbhchdiffb\n" +
-                "jbbdhcbgdefifhafhf\n" +
-                "ajhdeahcjjfie\n" +
-                "idjajdjaebfhhaacecb\n" +
-                "bhiehhcggjai\n" +
-                "bjjfjhiice\n" +
-                "aif\n" +
-                "gbbfjedbhhhjfegeeieig\n" +
-                "fefdhdaiadefifjhedaieaefc\n" +
-                "hgaejbhdebaacbgbgfbbcad\n" +
-                "heghcb\n" +
-                "eggadagajjgjgaihjdigihfhfbijbh\n" +
-                "jadeehcciedcbjhdeca\n" +
-                "ghgbhhjjgghgie\n" +
-                "ibhihfaeeihdffjgddcj\n" +
-                "hiedaegjcdai\n" +
-                "bjcdcafgfjdejgiafdhfed\n" +
-                "fgdgjaihdjaeefejbbijdbfabeie\n" +
-                "aeefgiehgjbfgidcedjhfdaaeigj\n" +
-                "bhbiaeihhdafgaciecb\n" +
-                "igicjdajjdegbceibgebedghihihh\n" +
-                "baeeeehcbffd\n" +
-                "ajfbfhhecgaghgfdadbfbb\n" +
-                "ahgaccehbgajcdfjihicihhc\n" +
-                "bbjhih\n" +
-                "a\n" +
-                "cdfcdejacaicgibghgddd\n" +
-                "afeffehfcfiefhcagg\n" +
-                "ajhebffeh\n" +
-                "e\n" +
-                "hhahehjfgcj\n" +
-                "ageaccdcbbcfidjfc\n" +
-                "gfcjahbbhcbggadcaebae\n" +
-                "gi\n" +
-                "edheggceegiedghhdfgabgcd\n" +
-                "hejdjjbfacggdccgahiai\n" +
-                "ffgeiadgjfgecdbaebagij\n" +
-                "dgaiahge\n" +
-                "hdbaifh\n" +
-                "gbhccajcdebcig\n" +
-                "ejdcbbeiiebjcagfhjfdahbif\n" +
-                "g\n" +
-                "ededbjaaigdhb\n" +
-                "ahhhcibdjhidbgefggdjebfcf\n" +
-                "bdigjaehfchebiedajcjdh\n" +
-                "fjehjgbdbaiifi\n" +
-                "fbgigbdcbcgffdicfcidfdafghajc\n" +
-                "ccajeeijhhb\n" +
-                "gaaagfacgiddfahejhbgdfcfbfeedh\n" +
-                "gdajaigfbjcdegeidgaccjfi\n" +
-                "fghechfchjbaebcghfcfbdicgaic\n" +
-                "cfhigaciaehacdjhfcgajgbhhgj\n" +
-                "edhjdbdjccbfihiaddij\n" +
-                "cbbhagjbcadegicgifgghai\n" +
-                "hgdcdhieji\n" +
-                "fbifgbhdhagch\n" +
-                "cbgcdjea\n" +
-                "dggjafcajhbbbaja\n" +
-                "bejihed\n" +
-                "eeahhcggaaidifdigcfjbficcfhjj\n";
-        String[] split = x.split("\n");
-        noPrefix(Arrays.asList(split));
+        minimumBribes(Arrays.asList(1, 2, 5, 3, 7, 8, 6, 4));
+    }
+
+    public static void minimumBribes(List<Integer> q) {
+        // Write your code here
+        int bribes = 0;
+        for (int i = 0; i < q.size() - 1; i++) {
+            if (q.get(i) > i + 1) {
+                int tempBribe = q.get(i) - i - 1;
+                if (tempBribe > 2) {
+                    System.out.println("Too chaotic");
+                    return;
+                }
+                bribes += tempBribe;
+            } else {
+                for (int j = i + 1; j < q.size(); j++) {
+                    if (q.get(i) > q.get(j)) {
+                        bribes++;
+                    }
+                }
+            }
+        }
+        System.out.println(bribes);
+    }
+
+    public static int palindromeIndex(String s) {
+        // Write your code here
+        char[] chars = s.toCharArray();
+        int length = chars.length;
+        if (isPalindrome(chars)) {
+            return -1;
+        }
+        for (int i = 0; i < length; i++) {
+            if (i == 0) {
+
+                if (isPalindrome(Arrays.copyOfRange(chars, 1, length)))
+                    return 0;
+                else continue;
+            }
+            if (i == length - 1) {
+                if (isPalindrome(Arrays.copyOfRange(chars, 0, length - 1)))
+                    return i;
+                else continue;
+            }
+            char[] temp = new char[length - 1];
+            for (int j = 0; j < chars.length; j++) {
+                if (i > j) {
+                    temp[j] = chars[j];
+                }
+                if (i < j) {
+                    temp[j - 1] = chars[j];
+                }
+            }
+
+            if (isPalindrome(temp)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    static boolean isPalindrome(char[] word) {
+        int l = word.length;
+        char[] preOrder = new char[l];
+        for (int i = 0; i < l; i++) {
+            preOrder[l - 1 - i] = word[i];
+        }
+        return Arrays.equals(word, preOrder);
     }
 
     public static void noPrefix(List<String> words) {

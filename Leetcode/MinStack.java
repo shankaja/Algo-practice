@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 class MStackTest {
     public static void main(String[] args) {
         MinStack minStack = new MinStack();
         minStack.push(-2);
         minStack.push(0);
+        minStack.push(-3);
         minStack.push(-3);
         minStack.pop();
         System.out.println(minStack.getMin());
@@ -15,38 +17,29 @@ class MStackTest {
 //leetcode 155
 public class MinStack {
 
-    private final List<Integer> stack;
-    private int minIndex;
+    private final Stack<Integer> stack;
+    private final Stack<Integer> minimum;
 
-    public MinStack() {
-        this.stack = new ArrayList<>();
+    public MinStack(){
+        stack = new Stack<>();
+        minimum = new Stack<>();
     }
 
-    public void push(int val) {
-        if (!stack.isEmpty() && stack.get(minIndex) != null && stack.get(minIndex) > val) {
-            minIndex = stack.size();
+    public void push(int e){
+        if (minimum.isEmpty()||minimum.peek()>=e){
+            minimum.push(e);
         }
-        stack.add(val);
-
+        stack.push(e);
     }
 
-    public void pop() {
-        stack.remove(stack.size() - 1);
-        if (stack.size() - 1 < minIndex) {
-            minIndex = 0;
-            for (int i = 1; i < stack.size(); i++) {
-                if (stack.get(minIndex) > stack.get(i)) {
-                    minIndex = i;
-                }
-            }
-        }
+    public int pop(){
+        int pop = stack.pop();
+        if (minimum.peek() == pop)
+            return minimum.pop();
+        return pop;
     }
 
-    public int top() {
-        return this.stack.get(stack.size() - 1);
-    }
-
-    public int getMin() {
-        return this.stack.get(minIndex);
+    public int getMin(){
+        return minimum.peek();
     }
 }
